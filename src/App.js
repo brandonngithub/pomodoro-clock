@@ -12,61 +12,59 @@ function App() {
   const [sessionLength, setSessionLength] = useState(60 * 25);
   const [timeLeft, setTimeLeft] = useState(sessionLength);
 
-  // change timeLeft whenever sessionLength changes
   useEffect(() => {
     setTimeLeft(sessionLength);
   }, [sessionLength]);
 
   const decrementBreakLengthByOneMinute = () => {
     const newBreakLength = breakLength - 60;
-    if (newBreakLength < 0) {
-      setBreakLength(0);
-    } else {
+    if (newBreakLength > 0) {
       setBreakLength(newBreakLength);
     }
   };
 
   const incrementBreakLengthByOneMinute = () => {
-    setBreakLength(breakLength + 60);
+    const newBreakLength = breakLength + 60;
+    if (newBreakLength <= 60 * 60) {
+      setBreakLength(newBreakLength)
+    }
   };
 
   const decrementSessionLengthByOneMinute = () => {
     const newSessionLength = sessionLength - 60;
-    if (newSessionLength < 0) {
-      setSessionLength(0);
-    } else {
+    if (newSessionLength > 0) {
       setSessionLength(newSessionLength);
     }
   };
 
   const incrementSessionLengthByOneMinute = () => {
-    setSessionLength(sessionLength + 60);
+    const newSessionLength = sessionLength + 60
+    if (newSessionLength <= 60 * 60){
+      setSessionLength(newSessionLength)
+    }
   };
 
   const isStarted = intervalId != null;
   const handleStartStopClick = () => {
     if (isStarted) {
-      // use start button as stop button if timer running using clearInterval
       clearInterval(intervalId);
       setIntervalId(null);
     } else {
-      // decrement timeLeft by one every second (1000ms) using setInterval
       const newIntervalId = setInterval(() => {
         setTimeLeft((prevTimeLeft) => {
           const newTimeLeft = prevTimeLeft - 1;
           if (newTimeLeft >= 0) {
-            return prevTimeLeft - 1;
+            return newTimeLeft;
           }
 
           audioElement.current.play();
 
-          // if session switch the break and vice versa
           if (currentSessionType === "Session") {
             setCurrentSessionType("Break");
-            setTimeLeft(breakLength);
+            return breakLength;
           } else if (currentSessionType === "Break") {
             setCurrentSessionType("Session");
-            setTimeLeft(sessionLength);
+            return sessionLength;
           }
         });
       }, 100);
@@ -94,7 +92,7 @@ function App() {
       <TimeLeft
         timerLabel={currentSessionType}
         handleStartStopClick={handleStartStopClick}
-        startStopButtonLabel={isStarted ? "Stop" : "Start"}
+        startStopButtonLabel={isStarted? "Stop" : "Start"}
         timeLeft={timeLeft}
       />
       <Session
