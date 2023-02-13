@@ -26,7 +26,7 @@ function App() {
   const incrementBreakLengthByOneMinute = () => {
     const newBreakLength = breakLength + 60;
     if (newBreakLength <= 60 * 60) {
-      setBreakLength(newBreakLength)
+      setBreakLength(newBreakLength);
     }
   };
 
@@ -38,9 +38,9 @@ function App() {
   };
 
   const incrementSessionLengthByOneMinute = () => {
-    const newSessionLength = sessionLength + 60
-    if (newSessionLength <= 60 * 60){
-      setSessionLength(newSessionLength)
+    const newSessionLength = sessionLength + 60;
+    if (newSessionLength <= 60 * 60) {
+      setSessionLength(newSessionLength);
     }
   };
 
@@ -73,7 +73,7 @@ function App() {
   };
 
   const handleResetButtonClick = () => {
-    audioElement.current.load()
+    audioElement.current.load();
     clearInterval(intervalId);
     setIntervalId(null);
     setCurrentSessionType("Session");
@@ -83,28 +83,31 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Break
-        breakLength={breakLength}
-        decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
-        incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute}
-      />
-      <TimeLeft
-        timerLabel={currentSessionType}
-        handleStartStopClick={handleStartStopClick}
-        startStopButtonLabel={isStarted? "Stop" : "Start"}
-        timeLeft={timeLeft}
-      />
-      <Session
-        sessionLength={sessionLength}
-        decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
-        incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
-      />
-      <button id="reset" onClick={handleResetButtonClick}>
-        Reset
-      </button>
+    <div className="flex flex-col h-screen items-center justify-center bg-green-700">
+      <div className="flex w-full justify-around">
+        <Break
+          breakLength={breakLength}
+          decrementBreakLengthByOneMinute={decrementBreakLengthByOneMinute}
+          incrementBreakLengthByOneMinute={incrementBreakLengthByOneMinute}
+        />
+        <TimeLeft
+          handleResetButtonClick={handleResetButtonClick}
+          timerLabel={currentSessionType}
+          handleStartStopClick={handleStartStopClick}
+          startStopButtonLabel={isStarted ? "Stop" : "Start"}
+          timeLeft={timeLeft}
+        />
+        <Session
+          sessionLength={sessionLength}
+          decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
+          incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
+        />
+      </div>
       <audio id="beep" ref={audioElement}>
-        <source src="https://onlineclock.net/audio/options/default.mp3" type="audio/mpeg" />
+        <source
+          src="https://onlineclock.net/audio/options/default.mp3"
+          type="audio/mpeg"
+        />
       </audio>
     </div>
   );

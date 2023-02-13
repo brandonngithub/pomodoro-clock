@@ -1,22 +1,43 @@
-import moment from "moment";
 import React from "react";
+import moment from "moment";
+import { BreakSessionContainer } from "../ui/BreakSessionUi";
+import { BreakSessionLabel } from "../ui/BreakSessionUi";
+import { BreakSessionTime } from "../ui/BreakSessionUi";
+import { PlusMinusButtonContainer } from "../ui/BreakSessionUi";
+import { PlusMinusButton } from "../ui/BreakSessionUi";
 
 const Session = (props) => {
-    const {
-        sessionLength,
-        decrementSessionLengthByOneMinute,
-        incrementSessionLengthByOneMinute,
-    } = props;
+  const {
+    sessionLength,
+    decrementSessionLengthByOneMinute,
+    incrementSessionLengthByOneMinute,
+  } = props;
 
-    const sessionLengthInMinutes = moment.duration(sessionLength, 's').asMinutes();
-    return (
-        <div>
-            <p id="session-label">Session</p>
-            <p id="session-length">{sessionLengthInMinutes}</p>
-            <button id="session-decrement" onClick={decrementSessionLengthByOneMinute}>-</button>
-            <button id="session-increment" onClick={incrementSessionLengthByOneMinute}>+</button>
-        </div>
-    )
-}
+  const sessionLengthInMinutes = moment
+    .duration(sessionLength, "s")
+    .asMinutes();
+  return (
+    <BreakSessionContainer>
+      <BreakSessionLabel id="session-label">Session</BreakSessionLabel>
+      <BreakSessionTime id="session-length">
+        {sessionLengthInMinutes}
+      </BreakSessionTime>
+      <PlusMinusButtonContainer>
+        <PlusMinusButton
+          id="session-decrement"
+          onClick={decrementSessionLengthByOneMinute}
+        >
+          -
+        </PlusMinusButton>
+        <PlusMinusButton
+          id="session-increment"
+          onClick={incrementSessionLengthByOneMinute}
+        >
+          +
+        </PlusMinusButton>
+      </PlusMinusButtonContainer>
+    </BreakSessionContainer>
+  );
+};
 
 export default Session;
