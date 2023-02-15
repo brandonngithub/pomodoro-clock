@@ -17,14 +17,14 @@ function App() {
   }, [sessionLength]);
 
   useEffect(() => {
-    if (timeLeft == 0){
-      //audioElement?.current?.play()
-      if (currentSessionType == "Break"){
-        setCurrentSessionType("Session")
-        setTimeLeft(breakLength)
-      } else if (currentSessionType == "Session"){
-        setCurrentSessionType("Break")
-        setTimeLeft(sessionLength)
+    if (timeLeft == 0) {
+      audioElement?.current?.play();
+      if (currentSessionType == "Break") {
+        setCurrentSessionType("Session");
+        setTimeLeft(breakLength);
+      } else if (currentSessionType == "Session") {
+        setCurrentSessionType("Break");
+        setTimeLeft(sessionLength);
       }
     }
   }, [currentSessionType, breakLength, sessionLength, timeLeft]);
@@ -60,21 +60,21 @@ function App() {
   const isStarted = intervalId != null;
   const handleStartStopClick = () => {
     if (isStarted) {
-      if (intervalId){
+      if (intervalId) {
         clearInterval(intervalId);
       }
       setIntervalId(null);
     } else {
       const newIntervalId = setInterval(() => {
-        setTimeLeft(prevTimeLeft => prevTimeLeft - 1);
-      }, 100);
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
       setIntervalId(newIntervalId);
     }
   };
 
   const handleResetButtonClick = () => {
     audioElement?.current?.load();
-    if (intervalId){
+    if (intervalId) {
       clearInterval(intervalId);
     }
     setIntervalId(null);
@@ -85,7 +85,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center bg-green-700">
+    <div className="flex flex-col h-screen items-center justify-center bg-slate-700">
       <div className="flex w-full justify-around">
         <Break
           breakLength={breakLength}

@@ -10,7 +10,7 @@ export const BreakSessionContainer: React.FC<React.DetailedHTMLProps<React.HTMLA
 
 export const BreakSessionLabel: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>> = ({ children, ...props }) => {
   return (
-    <p className="text-lg text-green-200" {...props}>
+    <p className="text-lg text-sky-200" {...props}>
       {children}
     </p>
   );
@@ -26,7 +26,7 @@ export const BreakSessionTime: React.FC<React.DetailedHTMLProps<React.HTMLAttrib
 
 export const PlusMinusButton: React.FC<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({ children, ...props }) => {
   return (
-    <button className="mt-2 text-lg text-gray-800 px-4 py-2 bg-green-200 rounded" {...props}>
+    <button className="mt-2 text-lg text-sky-800 px-4 py-2 bg-sky-200 rounded" {...props}>
       {children}
     </button>
   );
