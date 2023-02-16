@@ -21,10 +21,10 @@ function App() {
       audioElement?.current?.play();
       if (currentSessionType == "Break") {
         setCurrentSessionType("Session");
-        setTimeLeft(breakLength);
+        setTimeLeft(sessionLength);
       } else if (currentSessionType == "Session") {
         setCurrentSessionType("Break");
-        setTimeLeft(sessionLength);
+        setTimeLeft(breakLength);
       }
     }
   }, [currentSessionType, breakLength, sessionLength, timeLeft]);
