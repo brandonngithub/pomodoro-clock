@@ -1,10 +1,13 @@
-## ~ pomodoro-timer ~
+## ~ pomodoro-tdl ~
 <p>In doing this project I learned when and how to lift a state up to its parent component. I also learned how to pass data from a parent component to a child component as well as how to use the useRef React hook to manipulate DOM elements. Another thing that improved throughout the project was my TailwindCSS proficiency.</p>
 
 ## Tech Used:
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
+- [Express.js](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Screenshots:
 <img width="1440" alt="Screenshot 2023-02-16 at 3 06 50 PM" src="https://user-images.githubusercontent.com/91623674/219475942-97ad1006-358b-4b9d-827b-5a56750c5df7.png">
