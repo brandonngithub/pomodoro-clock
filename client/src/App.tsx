@@ -3,6 +3,7 @@ import "./App.css";
 import Break from "./components/Break";
 import Session from "./components/Session";
 import TimeLeft from "./components/TimeLeft";
+import TodoList from "./components/TodoList";
 
 function App() {
   const audioElement = useRef<HTMLAudioElement>(null);
@@ -104,6 +105,7 @@ function App() {
           decrementSessionLengthByOneMinute={decrementSessionLengthByOneMinute}
           incrementSessionLengthByOneMinute={incrementSessionLengthByOneMinute}
         />
+        <TodoList />
       </div>
       <audio id="beep" ref={audioElement}>
         <source
